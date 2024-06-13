@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Clan Reapers - Solicitud de Préstamo</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Clan de Minecraft: Reapers</h1>
+      <nav>
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="miembros.html">Miembros</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <section>
+      <h2>Solicitud de Préstamo</h2>
+      <form id="loan-form">
+        <label for="member">¿Quién eres?</label>
+        <select id="member" name="member">
+          <option value="JØSÈ">JØSÈ</option>
+          <option value="Sebas">Sebas</option>
+          <option value="TitanYT">｢Head Manager｣ TitanYT</option>
+          <option value="king_of_ohio">king_of_ohio</option>
+          <option value="Nulled">Nulled</option>
+          <option value="benja08">benja08</option>
+          <option value="Darcox17">Darcox17</option>
+          <option value="Rodrigo0213pro">Rodrigo0213pro</option>
+          <option value="patonuevo">patonuevo</option>
+        </select>
+
+        <label for="amount">Cantidad de dinero</label>
+        <input type="number" id="amount" name="amount" required />
+
+        <label for="reason">Motivo del préstamo</label>
+        <input type="text" id="reason" name="reason" required />
+
+        <button type="button" class="button" onclick="calculateLoan()">
+          Calcular Préstamo
+        </button>
+        <button
+          type="button"
+          class="button"
+          id="send-button"
+          onclick="sendNotification()"
+          style="display: none"
+        >
+          Enviar Solicitud
+        </button>
+      </form>
+
+      <div id="loan-result" class="result">
+        <p id="interest-rate"></p>
+        <p id="loan-amount"></p>
+        <p id="loan-return"></p>
+      </div>
+    </section>
+
+    <footer>
+      <p>© 2024 Clan Reapers</p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
