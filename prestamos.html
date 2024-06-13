@@ -13,15 +13,16 @@
         <ul>
           <li><a href="index.html">Inicio</a></li>
           <li><a href="miembros.html">Miembros</a></li>
+          <li><a href="prestamos.html">Préstamos</a></li>
         </ul>
       </nav>
     </header>
 
-    <section>
+    <section class="content">
       <h2>Solicitud de Préstamo</h2>
       <form id="loan-form">
         <label for="member">¿Quién eres?</label>
-        <select id="member" name="member">
+        <select id="member" name="member" onchange="updateMaxAmount()">
           <option value="JØSÈ">JØSÈ</option>
           <option value="Sebas">Sebas</option>
           <option value="TitanYT">｢Head Manager｣ TitanYT</option>
@@ -33,8 +34,28 @@
           <option value="patonuevo">patonuevo</option>
         </select>
 
-        <label for="amount">Cantidad de dinero</label>
-        <input type="number" id="amount" name="amount" required />
+        <label for="amount"
+          >Cantidad de dinero (usar barra o campo manualmente)</label
+        >
+        <input
+          type="range"
+          id="amount"
+          name="amount"
+          min="5000"
+          max="1000000"
+          step="1000"
+          oninput="updateAmountValue(this.value)"
+        />
+        <input
+          type="number"
+          id="amount-number"
+          name="amount-number"
+          min="5000"
+          max="1000000"
+          step="1000"
+          oninput="updateAmountSlider(this.value)"
+        />
+        <span id="amount-value">5000</span>
 
         <label for="reason">Motivo del préstamo</label>
         <input type="text" id="reason" name="reason" required />

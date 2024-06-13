@@ -1,0 +1,38 @@
+[
+  {
+    "nombre": "JØSÈ",
+    "tienePrestamo": true
+  },
+  {
+    "nombre": "Sebas",
+    "tienePrestamo": true
+  },
+  {
+    "nombre": "TitanYT",
+    "tienePrestamo": false
+  },
+  {
+    "nombre": "king_of_ohio",
+    "tienePrestamo": false
+  },
+  {
+    "nombre": "Nulled",
+    "tienePrestamo": false
+  },
+  {
+    "nombre": "benja08",
+    "tienePrestamo": false
+  },
+  {
+    "nombre": "Darcox17",
+    "tienePrestamo": false
+  },
+  {
+    "nombre": "Rodrigo0213pro",
+    "tienePrestamo": false
+  },
+  {
+    "nombre": "patonuevo",
+    "tienePrestamo": false
+  }
+]

@@ -1,6 +1,61 @@
-function calculateLoan() {
-  const amount = parseFloat(document.getElementById("amount").value);
+let usuarios = [];
+
+fetch("usuarios.json")
+  .then((response) => response.json())
+  .then((data) => {
+    usuarios = data;
+  })
+  .catch((error) => {
+    console.error("Error al cargar el archivo JSON:", error);
+  });
+
+function updateAmountValue(value) {
+  document.getElementById("amount-value").textContent = value;
+  document.getElementById("amount-number").value = value;
+}
+
+function updateAmountSlider(value) {
+  document.getElementById("amount-value").textContent = value;
+  document.getElementById("amount").value = value;
+}
+
+function updateMaxAmount() {
   const member = document.getElementById("member").value;
+  const limitedMembers = [
+    "Nulled",
+    "benja08",
+    "Darcox17",
+    "Rodrigo0213pro",
+    "patonuevo",
+  ];
+  const amountSlider = document.getElementById("amount");
+  const amountNumber = document.getElementById("amount-number");
+
+  if (limitedMembers.includes(member)) {
+    amountSlider.max = "100000";
+    amountNumber.max = "100000";
+  } else {
+    amountSlider.max = "1000000";
+    amountNumber.max = "1000000";
+  }
+
+  if (parseInt(amountSlider.value) > parseInt(amountSlider.max)) {
+    updateAmountValue(amountSlider.max);
+  }
+}
+
+function calculateLoan() {
+  const member = document.getElementById("member").value;
+  const amount = parseFloat(document.getElementById("amount").value);
+  const usuario = usuarios.find((u) => u.nombre === member);
+
+  if (usuario && usuario.tienePrestamo) {
+    alert(
+      "Ya tienes un préstamo activo. Contacta a Glazzier para gestionar más préstamos."
+    );
+    return;
+  }
+
   const limitedMembers = [
     "Nulled",
     "benja08",
@@ -47,6 +102,15 @@ function sendNotification() {
   const member = document.getElementById("member").value;
   const amount = parseFloat(document.getElementById("amount").value);
   const reason = document.getElementById("reason").value;
+  const usuario = usuarios.find((u) => u.nombre === member);
+
+  if (usuario && usuario.tienePrestamo) {
+    alert(
+      "Ya tienes un préstamo activo. Contacta a Glazzier para gestionar más préstamos."
+    );
+    return;
+  }
+
   const limitedMembers = [
     "Nulled",
     "benja08",
@@ -78,6 +142,7 @@ function sendNotification() {
   const webhookUrl =
     "https://discord.com/api/webhooks/1250709911827124224/pLUeebCedhyU6RURVp4hidg3-dwY1LR47jQyFVkckRRTn5P-B4iMf2Jl8DHchOufbe_Z";
   const data = {
+    content: "<@631907198930386950>",
     embeds: [
       {
         title: "Nueva solicitud de préstamo",
