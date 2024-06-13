@@ -1,38 +1,47 @@
 [
   {
     "nombre": "JØSÈ",
-    "tienePrestamo": true
+    "tienePrestamo": true,
+    "new": false
   },
   {
     "nombre": "Sebas",
-    "tienePrestamo": true
+    "tienePrestamo": true,
+    "new": false
   },
   {
     "nombre": "TitanYT",
-    "tienePrestamo": false
+    "tienePrestamo": false,
+    "new": false
   },
   {
     "nombre": "king_of_ohio",
-    "tienePrestamo": false
+    "tienePrestamo": false,
+    "new": false
   },
   {
     "nombre": "Nulled",
-    "tienePrestamo": false
+    "tienePrestamo": false,
+    "new": false
   },
   {
     "nombre": "benja08",
-    "tienePrestamo": false
+    "tienePrestamo": false,
+    "new": false
   },
   {
     "nombre": "Darcox17",
-    "tienePrestamo": false
+    "tienePrestamo": false,
+    "new": false
   },
   {
     "nombre": "Rodrigo0213pro",
-    "tienePrestamo": false
+    "tienePrestamo": false,
+    "new": false
   },
   {
     "nombre": "patonuevo",
-    "tienePrestamo": false
+    "tienePrestamo": false,
+    "new": true
   }
 ]

@@ -9,6 +9,10 @@ fetch("usuarios.json")
     console.error("Error al cargar el archivo JSON:", error);
   });
 
+document.addEventListener("DOMContentLoaded", () => {
+  updateMaxAmount(); // Actualizar el valor máximo del slider en la carga inicial
+});
+
 function updateAmountValue(value) {
   document.getElementById("amount-value").textContent = value;
   document.getElementById("amount-number").value = value;
@@ -31,7 +35,15 @@ function updateMaxAmount() {
   const amountSlider = document.getElementById("amount");
   const amountNumber = document.getElementById("amount-number");
 
-  if (limitedMembers.includes(member)) {
+  const usuario = usuarios.find((u) => u.nombre === member);
+
+  if (usuario && usuario.new) {
+    amountSlider.max = "30000";
+    amountNumber.max = "30000";
+    alert(
+      "Los usuarios nuevos del clan están limitados a 30,000 por préstamo por motivos de seguridad del clan."
+    );
+  } else if (limitedMembers.includes(member)) {
     amountSlider.max = "100000";
     amountNumber.max = "100000";
   } else {
@@ -65,9 +77,12 @@ function calculateLoan() {
   ];
   let interest = 0;
 
-  if (limitedMembers.includes(member) && amount > 100000) {
+  if (
+    (usuario.new && amount > 30000) ||
+    (limitedMembers.includes(member) && amount > 100000)
+  ) {
     alert(
-      "Los miembros seleccionados tienen un límite de préstamo de 100,000."
+      "Los miembros seleccionados tienen un límite de préstamo de 100,000 y los nuevos miembros tienen un límite de 30,000."
     );
     return;
   }
@@ -120,9 +135,12 @@ function sendNotification() {
   ];
   let interest = 0;
 
-  if (limitedMembers.includes(member) && amount > 100000) {
+  if (
+    (usuario.new && amount > 30000) ||
+    (limitedMembers.includes(member) && amount > 100000)
+  ) {
     alert(
-      "Los miembros seleccionados tienen un límite de préstamo de 100,000."
+      "Los miembros seleccionados tienen un límite de préstamo de 100,000 y los nuevos miembros tienen un límite de 30,000."
     );
     return;
   }
@@ -164,11 +182,17 @@ function sendNotification() {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(data),
-  }).then((response) => {
-    if (response.ok) {
-      alert("Solicitud enviada correctamente.");
-    } else {
-      alert("Error al enviar la solicitud.");
-    }
-  });
+  })
+    .then((response) => {
+      if (response.ok) {
+        alert("Solicitud enviada correctamente.");
+      } else {
+        response.text().then((text) => {
+          alert(`Error al enviar la solicitud: ${text}`);
+        });
+      }
+    })
+    .catch((error) => {
+      alert(`Error al enviar la solicitud: ${error.message}`);
+    });
 }
