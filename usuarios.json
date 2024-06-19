@@ -20,6 +20,11 @@
     "new": false
   },
   {
+    "nombre": "Glazzier",
+    "tienePrestamo": false,
+    "new": false
+  },
+  {
     "nombre": "Nulled",
     "tienePrestamo": false,
     "new": false
@@ -101,6 +106,36 @@
   },
   {
     "nombre": "newpanpan",
+    "tienePrestamo": false,
+    "new": true
+  },
+  {
+    "nombre": "motor_w16",
+    "tienePrestamo": false,
+    "new": true
+  },
+  {
+    "nombre": "danielelprocraft",
+    "tienePrestamo": false,
+    "new": true
+  },
+  {
+    "nombre": "kalels_",
+    "tienePrestamo": false,
+    "new": true
+  },
+  {
+    "nombre": "soyandyff123",
+    "tienePrestamo": false,
+    "new": true
+  },
+  {
+    "nombre": "tojifushiguro68",
+    "tienePrestamo": false,
+    "new": true
+  },
+  {
+    "nombre": "stmn_mori",
     "tienePrestamo": false,
     "new": true
   }
