@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Clan Reapers - Solicitud de Staff</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Clan de Minecraft: Reapers</h1>
+      <nav>
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="miembros.html">Miembros</a></li>
+          <li><a href="prestamos.html">Préstamos</a></li>
+          <li><a href="premium.html">Reapers Premium</a></li>
+          <li><a href="staff.html">Solicitud de Staff</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <section class="content">
+      <h2>Solicitud de Staff</h2>
+      <form id="staff-form" onsubmit="return validateForm()">
+        <label for="username">Nombre de usuario</label>
+        <input type="text" id="username" name="username" required />
+
+        <label for="hours">Horas en el servidor</label>
+        <input type="number" id="hours" name="hours" required />
+
+        <label for="contributions">Contribuciones al clan</label>
+        <textarea
+          id="contributions"
+          name="contributions"
+          rows="4"
+          required
+        ></textarea>
+
+        <button type="submit" class="button">Enviar Solicitud</button>
+      </form>
+
+      <div id="alert" class="result"></div>
+    </section>
+
+    <footer>
+      <p>© 2024 Clan Reapers</p>
+    </footer>
+
+    <script>
+      function validateForm() {
+        const hoursInput = document.getElementById("hours");
+        const hours = parseInt(hoursInput.value, 10);
+
+        if (hours < 50) {
+          const confirmMessage = `Tienes menos de 50 horas jugadas (${hours} horas).\n¿Estás seguro de enviar la solicitud?`;
+          if (!confirm(confirmMessage)) {
+            return false; // Cancela el envío del formulario
+          }
+        }
+
+        sendWebhook();
+        return true; // Envía el formulario si pasa la validación
+      }
+
+      function sendWebhook() {
+        const webhookUrl =
+          "https://discord.com/api/webhooks/1252303373168807948/WqtRdNQIcPk1uFswsuKVk8yCgbXrIP4N-b1hCFezWSFqx5zdryKfl_376Ms3A6Ek8JcO";
+        const formData = new FormData(document.getElementById("staff-form"));
+
+        const embed = {
+          title: "Solicitud de Staff",
+          description: `**Nombre de usuario:** ${formData.get(
+            "username"
+          )}\n**Horas en el servidor:** ${formData.get(
+            "hours"
+          )}\n**Contribuciones al clan:**\n${formData.get("contributions")}`,
+          color: 9007579, // Color morado en formato decimal
+          timestamp: new Date().toISOString(),
+          footer: {
+            text: "Clan Reapers",
+          },
+          // Menciones de roles
+          mentions: [
+            {
+              id: "1244517788794617876",
+              type: "role",
+            },
+            {
+              id: "1251576734709448777",
+              type: "role",
+            },
+          ],
+        };
+
+        const data = {
+          embeds: [embed],
+        };
+
+        fetch(webhookUrl, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        })
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Error al enviar la solicitud.");
+            }
+            return response.json();
+          })
+          .then((data) => {
+            console.log("Solicitud enviada con éxito:", data);
+            alert("Solicitud enviada con éxito.");
+          })
+          .catch((error) => {
+            console.error("Error al enviar la solicitud:", error);
+            alert(
+              "Error al enviar la solicitud. Por favor, inténtalo de nuevo más tarde."
+            );
+          });
+      }
+    </script>
+  </body>
+</html>
