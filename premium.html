@@ -5,6 +5,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Clan Reapers - Reapers Premium</title>
     <link rel="stylesheet" href="styles.css" />
+    <script>
+      function solicitarDiscordID(plan) {
+        const discordID = prompt(
+          "Por favor, ingresa tu ID de usuario de Discord. Puedes encontrar tu ID siguiendo las instrucciones en este enlace: https://support.discord.com/hc/articles/206346498"
+        );
+        if (discordID) {
+          enviarWebhook(discordID, plan);
+        }
+      }
+
+      function enviarWebhook(discordID, plan) {
+        const webhookURL =
+          "https://discord.com/api/webhooks/1253332531978440715/ddLtY1UyGMKAmIBOZAUeMHamkF0lwZxadImVS0egXdvzJyLxmZC4ybAygJVR4yEzIHip";
+        const payload = {
+          content: `Nueva solicitud de suscripción premium.\nID de usuario de Discord: <@${discordID}>\nPlan elegido: ${plan}`,
+        };
+
+        fetch(webhookURL, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
+        })
+          .then((response) => {
+            if (response.ok) {
+              alert("Solicitud enviada con éxito.");
+            } else {
+              alert("Hubo un error al enviar la solicitud.");
+            }
+          })
+          .catch((error) => {
+            alert("Hubo un error al enviar la solicitud.");
+            console.error("Error:", error);
+          });
+      }
+    </script>
   </head>
   <body>
     <header>
@@ -39,7 +76,9 @@
             <li>Permisos en diferentes protes</li>
             <li>Mayor probabilidad de ganar un sorteo</li>
           </ul>
-          <button class="button">Comprar</button>
+          <button class="button" onclick="solicitarDiscordID('Plan Básico')">
+            Comprar
+          </button>
         </div>
         <div class="plan family-plan">
           <h4>Plan Familiar</h4>
@@ -48,7 +87,9 @@
             <li>Permisos en diferentes protes para 3 miembros</li>
             <li>Mayor probabilidad de ganar un sorteo para 3 miembros</li>
           </ul>
-          <button class="button">Comprar</button>
+          <button class="button" onclick="solicitarDiscordID('Plan Familiar')">
+            Comprar
+          </button>
         </div>
         <!-- Puedes añadir más planes aquí -->
       </div>
