@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Clan Reapers - Inicio</title>
     <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
   </head>
   <body>
     <header>
@@ -26,10 +27,56 @@
         Explora nuestras páginas para conocer a los miembros del clan y
         solicitar préstamos.
       </p>
+
+      <div id="main" style="width: 600px; height: 400px"></div>
     </section>
 
     <footer>
       <p>© 2024 Clan Reapers</p>
     </footer>
+
+    <script>
+      var chartDom = document.getElementById("main");
+      var myChart = echarts.init(chartDom);
+      var option;
+
+      option = {
+        title: {
+          text: "Crecimiento de Miembros del Clan",
+        },
+        tooltip: {
+          trigger: "axis",
+        },
+        xAxis: {
+          type: "category",
+          data: [
+            "27 de mayo",
+            "28 de mayo",
+            "1 de junio",
+            "4 de junio",
+            "8 de junio",
+            "12 de junio",
+            "15 de junio",
+            "16 de junio",
+            "17 de junio",
+            "18 de junio",
+            "19 de junio",
+          ],
+        },
+        yAxis: {
+          type: "value",
+        },
+        series: [
+          {
+            name: "Miembros",
+            data: [2, 4, 6, 9, 10, 11, 16, 25, 29, 32, 34],
+            type: "line",
+            smooth: true,
+          },
+        ],
+      };
+
+      option && myChart.setOption(option);
+    </script>
   </body>
 </html>
