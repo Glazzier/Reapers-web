@@ -1,7 +1,8 @@
 /* Estilos base */
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f8f9fa;
+  font-family: 'Roboto', sans-serif;
+  background-color: #f4f4f9;
+  color: #333;
   margin: 0;
   padding: 0;
   display: flex;
@@ -9,97 +10,120 @@ body {
   min-height: 100vh;
 }
 
+/* Encabezado */
 header {
-  background-color: #343a40;
+  background-color: #222;
   color: #fff;
-  padding: 1rem;
+  padding: 1rem 0;
   text-align: center;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 header h1 {
   margin: 0;
-  font-size: 2.5rem;
+  font-size: 2.2rem;
+  font-weight: 400;
 }
 
+/* Navegación */
 nav ul {
   list-style-type: none;
   padding: 0;
-  text-align: center;
-  margin: 1rem 0 0 0;
+  display: flex;
+  justify-content: center;
+  margin: 0;
 }
 
 nav ul li {
-  display: inline-block;
-  margin-right: 1rem;
+  margin: 0 1rem;
 }
 
 nav ul li a {
   color: #61dafb;
   text-decoration: none;
-  font-weight: bold;
+  font-weight: 500;
   padding: 0.5rem 1rem;
-  border-radius: 4px;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  border-radius: 5px;
 }
 
-nav ul li a:hover {
-  background-color: #495057;
+nav ul li a:hover,
+nav ul li a.active {
+  background-color: #61dafb;
+  color: #222;
 }
 
+/* Contenido principal */
 .content {
   flex: 1;
   padding: 2rem;
   background-color: #fff;
   margin: 1rem;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  max-width: 1200px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  max-width: 1000px;
   width: 100%;
   margin: 2rem auto;
+  transition: transform 0.3s ease;
 }
 
-h2 {
-  color: #343a40;
-  margin-bottom: 1rem;
-  font-size: 1.75rem;
-  border-bottom: 2px solid #007bff;
+.content:hover {
+  transform: translateY(-10px);
+}
+
+.content h2 {
+  color: #222;
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+  border-bottom: 2px solid #61dafb;
   padding-bottom: 0.5rem;
+  text-align: center;
 }
 
-p {
-  color: #495057;
-  font-size: 1.25rem;
+.content p {
+  color: #555;
+  font-size: 1.1rem;
   line-height: 1.6;
 }
 
+/* Contenedor del gráfico */
 #main {
   width: 100%;
   height: 500px;
   margin-top: 2rem;
 }
 
+/* Lista de miembros */
 ul.member-list {
   list-style-type: none;
   padding: 0;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 ul.member-list li {
-  font-size: 1.25rem;
-  margin-bottom: 0.5rem;
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  background-color: #f8f9fa;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
 }
 
-ul.member-list li::before {
-  content: "•";
-  color: #007bff;
+ul.member-list li:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+ul.member-list li span {
+  color: #61dafb;
   font-weight: bold;
-  display: inline-block;
-  width: 1em;
-  margin-left: -1em;
 }
 
+/* Planes */
 .plans {
   display: flex;
   flex-wrap: wrap;
@@ -109,14 +133,14 @@ ul.member-list li::before {
 }
 
 .plan {
-  background-color: #e9ecef;
+  background-color: #f8f9fa;
   border: 1px solid #ced4da;
   border-radius: 8px;
   padding: 1.5rem;
   width: 100%;
   max-width: 300px;
   text-align: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -126,14 +150,14 @@ ul.member-list li::before {
 }
 
 .plan h4 {
-  color: #343a40;
+  color: #222;
   font-size: 1.5rem;
   margin-bottom: 1rem;
 }
 
 .plan p {
   font-size: 1.25rem;
-  color: #007bff;
+  color: #61dafb;
   margin-bottom: 1rem;
 }
 
@@ -152,7 +176,7 @@ ul.member-list li::before {
 
 .plan ul li::before {
   content: "✔";
-  color: #007bff;
+  color: #61dafb;
   font-weight: bold;
   display: inline-block;
   width: 1em;
@@ -160,9 +184,10 @@ ul.member-list li::before {
 }
 
 .family-plan {
-  border: 2px solid #007bff;
+  border: 2px solid #61dafb;
 }
 
+/* Formularios */
 form {
   display: flex;
   flex-direction: column;
@@ -191,7 +216,7 @@ input[type="range"] {
 }
 
 .button {
-  background-color: #007bff;
+  background-color: #61dafb;
   color: #fff;
   padding: 0.75rem 1.5rem;
   border: none;
@@ -202,11 +227,12 @@ input[type="range"] {
 }
 
 .button:hover {
-  background-color: #0056b3;
+  background-color: #21a1f1;
 }
 
+/* Resultados */
 .result {
-  background-color: #e9ecef;
+  background-color: #f8f9fa;
   padding: 1.5rem;
   border-radius: 8px;
   margin-top: 1rem;
@@ -215,8 +241,9 @@ input[type="range"] {
   display: none;
 }
 
+/* Pie de página */
 footer {
-  background-color: #343a40;
+  background-color: #222;
   color: #fff;
   text-align: center;
   padding: 1rem;
@@ -224,6 +251,7 @@ footer {
   box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
 }
 
+/* Media queries */
 @media (max-width: 768px) {
   .content {
     margin: 0.5rem;
@@ -239,36 +267,12 @@ footer {
     padding: 0.5rem 1rem;
   }
 
+  nav ul {
+    flex-direction: column;
+    align-items: center;
+  }
+
   nav ul li {
-    display: block;
     margin: 0.5rem 0;
   }
-}
-
-/* Estilos adicionales para la página de Top Balance */
-h2 {
-  font-size: 2rem;
-  text-align: center;
-}
-
-ul.member-list {
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-ul.member-list li {
-  font-size: 1.5rem;
-  margin-bottom: 0.75rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: #e9ecef;
-  padding: 0.75rem 1rem;
-  border-radius: 4px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-ul.member-list li span {
-  color: #007bff;
-  font-weight: bold;
 }
